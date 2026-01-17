@@ -1,0 +1,17 @@
+# --- Secrets ---
+.env
+.env.local
+
+# --- Python ---
+venv/
+__pycache__/
+*.pyc
+
+# --- Database & State ---
+chroma_db/
+metrics.db
+processed_urls.json
+
+# --- OS ---
+.DS_Store
+.vscode/

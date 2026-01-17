@@ -1,0 +1,40 @@
+# Web scraping and data parsing
+requests
+beautifulsoup4
+feedparser
+
+# Configuration 
+python-dotenv
+PyYAML
+
+# Progress Bar
+tqdm
+
+# LangChain and embeddings
+langchain
+langchain-core
+langchain-community
+langchain-text-splitters
+langchain-huggingface
+langchain-chroma
+chromadb
+sentence-transformers
+
+# LLM - Groq
+langchain-groq
+groq
+einops
+
+# Reranker and GPU support
+torch
+transformers
+
+# Testing
+pytest
+pytest-cov
+pytest-mock
+
+# Type checking (optional but recommended)
+mypy
+types-PyYAML
+types-requests

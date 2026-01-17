@@ -1,0 +1,131 @@
+# PC Hardware RAG System - Configuration
+# =====================================
+
+# RSS Feeds - Hardware News Sources
+# ----------------------------------
+rss_feeds:
+  # General Hardware News
+  - name: "Tom's Hardware"
+    url: "https://www.tomshardware.com/feeds/all"
+  
+  - name: "TechPowerUp"
+    url: "https://www.techpowerup.com/rss/news"
+  
+  # FIXED: TechSpot - Use backend.xml instead of backend/news.xml
+  - name: "TechSpot"
+    url: "https://www.techspot.com/backend.xml"
+  
+  # Storage (SSD/HDD)
+  - name: "StorageReview"
+    url: "https://www.storagereview.com/feed"
+  
+  # Monitors & Peripherals
+  - name: "TFTCentral"
+    url: "https://tftcentral.co.uk/feed"
+  
+  # REMOVED: RTings - 404 error
+  
+  # Cases, Cooling, PSU
+  - name: "KitGuru"
+    url: "https://www.kitguru.net/feed/"
+  
+  # Overall PC Hardware
+  - name: "PC Gamer Hardware"
+    url: "https://www.pcgamer.com/rss/"
+  
+  - name: "HardwareCanucks"
+    url: "https://www.hardwarecanucks.com/feed/"
+  
+  # ADDED: New working feeds to replace broken ones
+  - name: "HotHardware"
+    url: "https://hothardware.com/mobile/news.aspx"
+  
+  - name: "PCWorld"
+    url: "https://www.pcworld.com/feed"
+  
+  - name: "The Verge Tech"
+    url: "https://www.theverge.com/rss/index.xml"
+  
+  - name: "Ars Technica"
+    url: "https://feeds.arstechnica.com/arstechnica/index"
+  
+  - name: "TechRadar PC Hardware"
+    url: "https://www.techradar.com/rss"
+
+# Article Processing Settings
+# ----------------------------
+article_processing:
+  # Number of recent articles to fetch per feed
+  # Higher = more articles but slower processing
+  articles_per_feed: 20
+  
+  # Characters per chunk for vector storage
+  # Recommended: 500-1500 for semantic search
+  chunk_size: 1000
+  
+  # Overlap between chunks to maintain context
+  # Recommended: 10-20% of chunk_size
+  chunk_overlap: 200
+  
+  # Total limit across all feeds to prevent overload
+  # Adjust based on your needs and resources
+  max_articles_to_process: 80
+
+# Vector Database Settings
+# -------------------------
+vector_db:
+  # Directory to store ChromaDB data
+  persist_directory: "./chroma_db"
+  
+  # Collection name for hardware articles
+  collection_name: "hardware_articles"
+
+# LLM Configuration
+# -----------------
+llm:
+  # Provider: currently supports "groq"
+  provider: "groq"
+  
+  groq:
+    # API key is loaded from environment variable GROQ_API_KEY
+    # Set it in .env file: GROQ_API_KEY=your_key_here
+    
+    # Available models:
+    # - llama-3.3-70b-versatile (recommended, best quality)
+    # - llama-3.1-70b-versatile (fast, good quality)
+    # - mixtral-8x7b-32768 (alternative)
+    model: "llama-3.3-70b-versatile"
+
+# Q&A Settings
+# ------------
+qa:
+  # Number of chunks to retrieve before reranking
+  # Higher = better recall but slower
+  # Recommended: 15-30
+  retriever_k: 20
+  
+  # Number of top chunks after reranking
+  # These are sent to the LLM for answer generation
+  # Recommended: 3-7
+  reranker_top_n: 5
+  
+  # LLM temperature (0.0-1.0)
+  # Lower = more focused, deterministic
+  # Higher = more creative, varied
+  # Recommended: 0.1-0.4 for factual Q&A
+  temperature: 0.3
+
+# Performance Settings (Optional)
+# --------------------------------
+performance:
+  # Number of parallel workers for RSS fetching
+  # Adjust based on your network and CPU
+  max_workers: 5
+  
+  # Enable hardware relevance filtering
+  # Filters out non-hardware articles to save space
+  relevance_filtering: true
+  
+  # Relevance threshold (0.0-1.0)
+  # Lower = more permissive, higher = stricter
+  relevance_threshold: 0.15
