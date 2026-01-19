@@ -22,7 +22,7 @@ A Retrieval-Augmented Generation (RAG) system that scrapes real-time PC hardware
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/SayantanDe04/pc-qa-bot.git](https://github.com/SayantanDe04/pc-qa-bot.git)
+    git clone [https://github.com/SayantanML-IO/pc-qa-bot.git](https://github.com/SayantanML-IO/pc-qa-bot.git)
     cd pc-qa-bot
     ```
 
